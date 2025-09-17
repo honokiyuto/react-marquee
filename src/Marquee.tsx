@@ -102,13 +102,17 @@ const Marquee: React.FC<MarqueeProps> = ({
   
   // アニメーション反復回数の設定
   const animationIterationCount = loop === -1 ? 'infinite' : loop.toString();
+
+  // heightとwidthのpx変換
+  const heightValue = typeof height === 'number' ? `${height}px` : height;
+  const widthValue = typeof width === 'number' ? `${width}px` : width;
   
   // CSSカスタムプロパティの設定
   const cssVariables: Record<string, string> = {
     '--marquee-duration': animationDuration,
     '--marquee-iteration-count': animationIterationCount,
-    '--container-width': `${dimensions.containerWidth}px`,
-    '--container-height': `${dimensions.containerHeight}px`,
+    '--container-width': widthValue || `${dimensions.containerWidth}px`,
+    '--container-height': heightValue || `${dimensions.containerHeight}px`,
     '--content-width': `${dimensions.contentWidth}px`,
     '--content-height': `${dimensions.contentHeight}px`,
   };
@@ -118,8 +122,8 @@ const Marquee: React.FC<MarqueeProps> = ({
     ...cssVariables,
     ...style,
     backgroundColor: bgcolor,
-    height: typeof height === 'number' ? `${height}px` : height,
-    width: typeof width === 'number' ? `${width}px` : width,
+    height: heightValue,
+    width: widthValue,
     marginLeft: hspace ? `${hspace}px` : undefined,
     marginRight: hspace ? `${hspace}px` : undefined,
     marginTop: vspace ? `${vspace}px` : undefined,

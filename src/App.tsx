@@ -15,7 +15,7 @@ function App() {
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
-;5A;5A        </a>
+    </a>
       </div>
       <h1>React Marquee Demo</h1>
       
@@ -117,8 +117,22 @@ function App() {
         <Marquee 
           behavior="alternate" 
           direction="up" 
-          height="150px" 
-          width="300px" 
+
+          style={{ border: '1px solid #ccc', padding: '10px' }}
+        >
+          Vertical bouncing text
+        </Marquee>
+      </div>
+
+
+      {/* 水平方向のalternate */}
+      <div style={{ marginBottom: '20px' }}>
+        <h3>水平バウンス</h3>
+        <Marquee 
+          behavior="alternate" 
+          direction="left" 
+          height="200px" 
+          width="500px" 
           style={{ border: '1px solid #ccc', padding: '10px' }}
         >
           Vertical bouncing text

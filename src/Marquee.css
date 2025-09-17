@@ -135,13 +135,13 @@
 
 @keyframes marquee-alternate-horizontal {
   0% {
-    transform: translateX(calc(-1 * var(--container-width)));
+    transform: translateX(calc(-1 * var(--content-width) / 2));
   }
   50% {
-    transform: translateX(calc(var(--container-width)));
+    transform: translateX(calc((var(--container-width) - var(--content-width)) / 2));
   }
   100% {
-    transform: translateX(calc(-1 * var(--container-width)));
+    transform: translateX(calc(-1 * var(--content-width) / 2));
   }
 }
 
@@ -153,13 +153,13 @@
 
 @keyframes marquee-alternate-vertical {
   0% {
-    transform: translateY(calc(-1 * var(--container-height)));
+    transform: translateY(calc(-1 * var(--content-height) / 2));
   }
   50% {
-    transform: translateY(calc(var(--container-height) - var(--content-height)));
+    transform: translateY(calc(var(--container-height)));
   }
   100% {
-    transform: translateY(calc(-1 * var(--container-height)));
+    transform: translateY(calc(-1 * var(--content-height) / 2));
   }
 }
 
