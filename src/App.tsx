@@ -15,7 +15,7 @@ function App() {
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+;5A;5A        </a>
       </div>
       <h1>React Marquee Demo</h1>
       
@@ -23,15 +23,23 @@ function App() {
       <div style={{ marginBottom: '20px' }}>
         <h3>基本的な左スクロール（デフォルト）</h3>
         <Marquee width="400px" style={{ border: '1px solid #ccc', padding: '10px' }}>
-          This text will scroll from right to left
+          This is a longer text to test if the complete text scrolls properly from right to left without being cut off
+        </Marquee>
+      </div>
+
+      {/* 右方向スクロール */}
+      <div style={{ marginBottom: '20px' }}>
+        <h3>右方向スクロール</h3>
+        <Marquee direction="right" width="300px" style={{ border: '1px solid #ccc', padding: '10px' }}>
+          This text scrolls to the right and should complete its journey
         </Marquee>
       </div>
 
       {/* 上方向スクロール */}
       <div style={{ marginBottom: '20px' }}>
         <h3>上方向スクロール</h3>
-        <Marquee direction="up" height="100px" width="250px" style={{ border: '1px solid #ccc', padding: '10px' }}>
-          This text will scroll from bottom to top
+        <Marquee direction="up" height="300px" width="250px" style={{ border: '1px solid #ccc', padding: '10px' }}>
+          This text will scroll from bottom to top and should start from the very bottom
         </Marquee>
       </div>
 
@@ -55,7 +63,15 @@ function App() {
       <div style={{ marginBottom: '20px' }}>
         <h3>右方向スクロール</h3>
         <Marquee direction="right" width="300px" style={{ border: '1px solid #ccc', padding: '10px' }}>
-          This text scrolls to the right
+          This text scrolls to the right and should complete its journey
+        </Marquee>
+      </div>
+
+      {/* 下方向スクロール */}
+      <div style={{ marginBottom: '20px' }}>
+        <h3>下方向スクロール</h3>
+        <Marquee direction="down" height="100px" width="250px" style={{ border: '1px solid #ccc', padding: '10px' }}>
+          This text scrolls down from top to bottom
         </Marquee>
       </div>
 

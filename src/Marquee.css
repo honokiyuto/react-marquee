@@ -22,10 +22,10 @@
 
 @keyframes marquee-scroll-left {
   0% {
-    transform: translateX(100%);
+    transform: translateX(150%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-150%);
   }
 }
 
@@ -36,10 +36,10 @@
 
 @keyframes marquee-scroll-right {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-150%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(150%);
   }
 }
 
@@ -50,10 +50,10 @@
 
 @keyframes marquee-scroll-up {
   0% {
-    transform: translateY(100%);
+    transform: translateY(150%);
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-150%);
   }
 }
 

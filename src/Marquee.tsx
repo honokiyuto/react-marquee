@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from 'react';
+import React, { type CSSProperties, useRef, useEffect, useState } from 'react';
 import './Marquee.css';
 
 export interface MarqueeProps {
@@ -48,11 +48,54 @@ const Marquee: React.FC<MarqueeProps> = ({
   className = '',
   style = {},
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ containerWidth: 0, containerHeight: 0, contentWidth: 0, contentHeight: 0 });
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current && contentRef.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const contentRect = contentRef.current.getBoundingClientRect();
+        setDimensions({
+          containerWidth: containerRect.width,
+          containerHeight: containerRect.height,
+          contentWidth: contentRect.width,
+          contentHeight: contentRect.height,
+        });
+      }
+    };
+
+    // 複数回測定して正確な値を取得
+    const timer1 = setTimeout(updateDimensions, 50);
+    const timer2 = setTimeout(updateDimensions, 200);
+    
+    // リサイズイベント
+    window.addEventListener('resize', updateDimensions);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, [children]);
+
   // スクロール遅延の計算（truespeedが指定されていない場合は60が最下限）
   const actualScrollDelay = truespeed ? scrolldelay : Math.max(scrolldelay, 60);
   
-  // アニメーション継続時間の計算
-  const animationDuration = `${actualScrollDelay * 100 / scrollamount}ms`;
+  // アニメーション継続時間の計算（距離に基づいて調整）
+  let baseDuration = actualScrollDelay * 100 / scrollamount;
+  
+  // コンテンツサイズに基づく調整
+  if (dimensions.contentWidth > 0 && (direction === 'left' || direction === 'right')) {
+    const ratio = Math.max(1, dimensions.contentWidth / 200); // 基準幅200px
+    baseDuration *= ratio;
+  } else if (dimensions.contentHeight > 0 && (direction === 'up' || direction === 'down')) {
+    const ratio = Math.max(1, dimensions.contentHeight / 50); // 基準高さ50px
+    baseDuration *= ratio;
+  }
+  
+  const animationDuration = `${baseDuration}ms`;
   
   // アニメーション反復回数の設定
   const animationIterationCount = loop === -1 ? 'infinite' : loop.toString();
@@ -81,10 +124,11 @@ const Marquee: React.FC<MarqueeProps> = ({
   
   return (
     <div
+      ref={containerRef}
       className={`marquee-container ${animationClass} ${className}`}
       style={containerStyle}
     >
-      <div className="marquee-content">
+      <div ref={contentRef} className="marquee-content">
         {children}
       </div>
     </div>
