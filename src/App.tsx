@@ -23,7 +23,7 @@ function App() {
       <div style={{ marginBottom: '20px' }}>
         <h3>基本的な左スクロール（デフォルト）</h3>
         <Marquee width="400px" style={{ border: '1px solid #ccc', padding: '10px' }}>
-          This is a longer text to test if the complete text scrolls properly from right to left without being cut off
+          This is a longer 
         </Marquee>
       </div>
 
@@ -118,7 +118,7 @@ function App() {
           behavior="alternate" 
           direction="up" 
           height="150px" 
-          width="200px" 
+          width="300px" 
           style={{ border: '1px solid #ccc', padding: '10px' }}
         >
           Vertical bouncing text

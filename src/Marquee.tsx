@@ -83,19 +83,22 @@ const Marquee: React.FC<MarqueeProps> = ({
   // スクロール遅延の計算（truespeedが指定されていない場合は60が最下限）
   const actualScrollDelay = truespeed ? scrolldelay : Math.max(scrolldelay, 60);
   
-  // アニメーション継続時間の計算（距離に基づいて調整）
-  let baseDuration = actualScrollDelay * 100 / scrollamount;
+  // アニメーション継続時間の計算（scrollamountベース）
+  // scrollamountは1フレームあたりの移動ピクセル数
+  // scrolldelayはフレーム間のインターバル（ミリ秒）
+  // 基本的な計算式：時間 = 距離 / 速度
+  let totalDistance = 0;
   
-  // コンテンツサイズに基づく調整
-  if (dimensions.contentWidth > 0 && (direction === 'left' || direction === 'right')) {
-    const ratio = Math.max(1, dimensions.contentWidth / 200); // 基準幅200px
-    baseDuration *= ratio;
-  } else if (dimensions.contentHeight > 0 && (direction === 'up' || direction === 'down')) {
-    const ratio = Math.max(1, dimensions.contentHeight / 50); // 基準高さ50px
-    baseDuration *= ratio;
+  if (direction === 'left' || direction === 'right') {
+    totalDistance = dimensions.containerWidth + dimensions.contentWidth;
+  } else if (direction === 'up' || direction === 'down') {
+    totalDistance = dimensions.containerHeight + dimensions.contentHeight;
   }
   
-  const animationDuration = `${baseDuration}ms`;
+  // フレーム数 = 総距離 / scrollamount
+  const totalFrames = totalDistance / scrollamount;
+  // 総時間 = フレーム数 * scrolldelay
+  const animationDuration = `${Math.max(100, totalFrames * actualScrollDelay)}ms`;
   
   // アニメーション反復回数の設定
   const animationIterationCount = loop === -1 ? 'infinite' : loop.toString();
