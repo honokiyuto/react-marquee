@@ -22,10 +22,10 @@
 
 @keyframes marquee-scroll-left {
   0% {
-    transform: translateX(150%);
+    transform: translateX(calc(var(--container-width)));
   }
   100% {
-    transform: translateX(-150%);
+    transform: translateX(calc(-1 * var(--content-width)));
   }
 }
 
@@ -36,10 +36,10 @@
 
 @keyframes marquee-scroll-right {
   0% {
-    transform: translateX(-150%);
+    transform: translateX(calc(-1 * var(--content-width)));
   }
   100% {
-    transform: translateX(150%);
+    transform: translateX(calc(var(--container-width)));
   }
 }
 
@@ -50,10 +50,10 @@
 
 @keyframes marquee-scroll-up {
   0% {
-    transform: translateY(150%);
+    transform: translateY(calc(var(--container-height)));
   }
   100% {
-    transform: translateY(-150%);
+    transform: translateY(calc(-1 * var(--content-height)));
   }
 }
 
@@ -64,10 +64,10 @@
 
 @keyframes marquee-scroll-down {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(calc(-1 * var(--content-height)));
   }
   100% {
-    transform: translateY(100%);
+    transform: translateY(calc(var(--container-height)));
   }
 }
 
@@ -78,7 +78,7 @@
 
 @keyframes marquee-slide-left {
   0% {
-    transform: translateX(100%);
+    transform: translateX(calc(var(--container-width)));
   }
   100% {
     transform: translateX(0);
@@ -92,7 +92,7 @@
 
 @keyframes marquee-slide-right {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-1 * var(--content-width)));
   }
   100% {
     transform: translateX(0);
@@ -106,7 +106,7 @@
 
 @keyframes marquee-slide-up {
   0% {
-    transform: translateY(100%);
+    transform: translateY(calc(var(--container-height)));
   }
   100% {
     transform: translateY(0);
@@ -120,7 +120,7 @@
 
 @keyframes marquee-slide-down {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(calc(-1 * var(--content-height)));
   }
   100% {
     transform: translateY(0);
@@ -135,13 +135,13 @@
 
 @keyframes marquee-alternate-horizontal {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-1 * var(--content-width)));
   }
   50% {
-    transform: translateX(100%);
+    transform: translateX(calc(var(--container-width)));
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-1 * var(--content-width)));
   }
 }
 
@@ -153,13 +153,13 @@
 
 @keyframes marquee-alternate-vertical {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(calc(-1 * var(--content-height)));
   }
   50% {
-    transform: translateY(100%);
+    transform: translateY(calc(var(--container-height)));
   }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(calc(-1 * var(--content-height)));
   }
 }
 

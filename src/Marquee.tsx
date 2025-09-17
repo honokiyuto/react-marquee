@@ -104,6 +104,10 @@ const Marquee: React.FC<MarqueeProps> = ({
   const cssVariables: Record<string, string> = {
     '--marquee-duration': animationDuration,
     '--marquee-iteration-count': animationIterationCount,
+    '--container-width': `${dimensions.containerWidth}px`,
+    '--container-height': `${dimensions.containerHeight}px`,
+    '--content-width': `${dimensions.contentWidth}px`,
+    '--content-height': `${dimensions.contentHeight}px`,
   };
   
   // コンテナのスタイル
