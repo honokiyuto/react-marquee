@@ -8,8 +8,10 @@
 .marquee-alternate-left {
   white-space: nowrap;
   display: grid;
-  animation: marquee-alternate-left 4s linear infinite;
-  justify-items: start;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-name: marquee-alternate-left;
 
   &::before {
     content: '';
@@ -19,8 +21,38 @@
 .marquee-alternate-right {
   white-space: nowrap;
   display: grid;
-  animation: marquee-alternate-right 4s linear infinite;
-  justify-items: start;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-name: marquee-alternate-right;
+
+  &::before {
+    content: '';
+  }
+}
+
+.marquee-alternate-up {
+  white-space: nowrap;
+  display: grid;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-name: marquee-alternate-up;
+  height: 100%;
+
+  &::before {
+    content: '';
+  }
+}
+
+.marquee-alternate-down {
+  white-space: nowrap;
+  display: grid;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-name: marquee-alternate-down;
+  height: 100%;
 
   &::before {
     content: '';
@@ -52,5 +84,33 @@
 
   100% {
     grid-template-columns: 0fr auto;
+  }
+}
+
+@keyframes marquee-alternate-down {
+  0% {
+    grid-template-rows: 0fr auto;
+  }
+
+  50% {
+    grid-template-rows: 1fr auto;
+  }
+
+  100% {
+    grid-template-rows: 0fr auto;
+  }
+}
+
+@keyframes marquee-alternate-up {
+  0% {
+    grid-template-rows: 1fr auto;
+  }
+
+  50% {
+    grid-template-rows: 0fr auto;
+  }
+
+  100% {
+    grid-template-rows: 1fr auto;
   }
 }
