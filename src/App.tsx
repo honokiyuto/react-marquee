@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <h1>Marquee</h1>
       <Marquee>
-        <p>This is a simple marquee component.</p>
+        <p>This is </p>
       </Marquee>
     </div>
   );

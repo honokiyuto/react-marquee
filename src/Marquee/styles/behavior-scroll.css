@@ -1,32 +1,32 @@
-.direction-left {
+.marquee-scroll-left {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 10s;
-  animation-name: marquee-direction-left;
+  animation-name: marquee-scroll-left;
 }
 
-.direction-right {
+.marquee-scroll-right {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 1s;
-  animation-name: marquee-direction-right;
+  animation-name: marquee-scroll-right;
 }
 
-.direction-down {
+.marquee-scroll-down {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 10s;
-  animation-name: marquee-direction-down;
+  animation-name: marquee-scroll-down;
 }
 
-.direction-up {
+.marquee-scroll-up {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 1s;
-  animation-name: marquee-direction-up;
+  animation-name: marquee-scroll-up;
 }
 
-@keyframes marquee-direction-left {
+@keyframes marquee-scroll-left {
   0% {
     transform: translateX(100%);
   }
@@ -35,7 +35,7 @@
   }
 }
 
-@keyframes marquee-direction-right {
+@keyframes marquee-scroll-right {
   0% {
     transform: translateX(-100%);
   }
@@ -44,7 +44,7 @@
   }
 }
 
-@keyframes marquee-direction-down {
+@keyframes marquee-scroll-down {
   0% {
     transform: translateY(-100%);
   }
@@ -53,7 +53,7 @@
   }
 }
 
-@keyframes marquee-direction-up {
+@keyframes marquee-scroll-up {
   0% {
     transform: translateY(100%);
   }
