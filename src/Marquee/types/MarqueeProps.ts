@@ -14,11 +14,11 @@ export type MarqueeProps = {
   /**
    * @description インターバル内での、テキストの移動ピクセル数を指定します。初期値は 6 です。
    */
-  scrollamount?: number;
+  scrollAmount?: number;
   /**
    * @description スクロール動作のインターバルをミリ秒で指定します。初期値は 85 です。 60 が最下限であり、これ以下の値は 60 として解釈されます。
    */
-  scrolldelay?: number;
+  scrollDelay?: number;
   /**
    * @description marquee 要素内に表示するテキストや HTML 要素を指定します。
    */
