@@ -4,9 +4,10 @@ export const getAnimations = ({
   scrollAmount,
   scrollDelay,
   loop,
+  isStopAnimation = false,
 }: Pick<
   MarqueeProps,
-  'scrollAmount' | 'scrollDelay' | 'loop'
+  'scrollAmount' | 'scrollDelay' | 'loop' | 'isStopAnimation'
 >): React.CSSProperties => {
   // scrolldelayの最小値は60ms
   const actualScrollDelay = Math.max(60, scrollDelay ?? 0);
@@ -24,5 +25,6 @@ export const getAnimations = ({
   return {
     animationDuration: `${duration}ms`,
     animationIterationCount: iterationCount,
+    animationPlayState: isStopAnimation ? 'paused' : 'running',
   };
 };

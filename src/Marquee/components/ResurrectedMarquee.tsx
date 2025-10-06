@@ -17,6 +17,7 @@ export const ResurrectedMarquee = ({
   scrollDelay = 85,
   className = '',
   style = {},
+  isStopAnimation = false,
   children,
 }: MarqueeProps) => {
   const containerClassName = `marquee-container ${className}`.trim();
@@ -25,6 +26,7 @@ export const ResurrectedMarquee = ({
     scrollAmount,
     scrollDelay,
     loop,
+    isStopAnimation,
   });
   return (
     <div className={containerClassName} style={style}>
