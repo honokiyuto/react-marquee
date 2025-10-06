@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Marquee } from '../Marquee';
 
 /**
@@ -43,7 +43,7 @@ const meta = {
       control: { type: 'number', min: -1, step: 1 },
       description: 'スクロール回数を指定します。-1で無限ループ',
       table: {
-        defaultValue: { summary: -1 },
+        defaultValue: { summary: '-1' },
         type: { summary: 'number' },
       },
     },
@@ -51,7 +51,7 @@ const meta = {
       control: { type: 'number', min: 1, max: 50, step: 1 },
       description: '1インターバルあたりの移動ピクセル数',
       table: {
-        defaultValue: { summary: 6 },
+        defaultValue: { summary: '6' },
         type: { summary: 'number' },
       },
     },
@@ -59,7 +59,7 @@ const meta = {
       control: { type: 'number', min: 60, max: 500, step: 5 },
       description: 'スクロールのインターバル（ミリ秒）。最小値は60',
       table: {
-        defaultValue: { summary: 85 },
+        defaultValue: { summary: '85' },
         type: { summary: 'number' },
       },
     },

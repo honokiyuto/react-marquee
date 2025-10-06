@@ -1,0 +1,144 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="はじめに/開発ガイド" />
+
+# 開発ガイド
+
+このプロジェクトの開発方法について説明します。
+
+## インストール
+
+```bash
+pnpm install
+```
+
+## 開発サーバーの起動
+
+開発サーバーを起動して、ブラウザでコンポーネントを確認できます：
+
+```bash
+pnpm dev
+```
+
+開発サーバーは `http://localhost:5173` で起動します。
+
+## Storybookの起動
+
+コンポーネントのドキュメントと様々なバリエーションを確認できます：
+
+```bash
+pnpm storybook
+```
+
+Storybookは `http://localhost:6006` で起動します。
+
+## ビルド
+
+本番用にビルドします：
+
+```bash
+pnpm build
+```
+
+ビルドされたファイルは`dist`ディレクトリに出力されます。
+
+## Storybookのビルド
+
+Storybookを静的サイトとしてビルドします：
+
+```bash
+pnpm build-storybook
+```
+
+ビルドされたファイルは`storybook-static`ディレクトリに出力されます。
+
+## リント
+
+コードの品質チェックを実行します：
+
+```bash
+pnpm lint
+```
+
+## フォーマット
+
+コードを自動整形します：
+
+```bash
+pnpm format
+```
+
+## プレビュー
+
+ビルドしたアプリケーションをプレビューします：
+
+```bash
+pnpm preview
+```
+
+---
+
+## プロジェクト構造
+
+```
+react-marquee/
+├── src/
+│   ├── Marquee/              # Marqueeコンポーネント
+│   │   ├── components/       # コンポーネント実装
+│   │   ├── logics/           # ロジック層
+│   │   ├── styles/           # スタイルシート
+│   │   ├── types/            # 型定義
+│   │   └── index.tsx         # エントリーポイント
+│   ├── stories/              # Storybookストーリー
+│   ├── App.tsx               # デモアプリ
+│   └── main.tsx              # Reactエントリーポイント
+├── .storybook/               # Storybook設定
+├── public/                   # 静的ファイル
+└── package.json              # 依存関係
+```
+
+## Tech Stack
+
+- **React 19** - UIライブラリ
+- **TypeScript** - 型安全性
+- **Vite** - ビルドツール
+- **Storybook 9** - UIドキュメント
+- **ESLint** - Linter
+- **Prettier** - コードフォーマッター
+- **pnpm** - パッケージマネージャー
+
+## 開発のヒント
+
+### ホットリロード
+
+開発中は、ファイルを保存すると自動的にブラウザが更新されます。
+
+### Storybookでの開発
+
+新しいストーリーを追加する場合：
+
+1. `src/stories/`ディレクトリに`*.stories.tsx`または`*.mdx`ファイルを作成
+2. Storybookサーバーが自動的に検出して反映されます
+
+### MDXの活用
+
+Markdown形式でドキュメントを書きたい場合は、`.mdx`ファイルを使用してください：
+
+````mdx
+import { Meta } from '@storybook/react-vite';
+
+<Meta title="カテゴリー/タイトル" />
+
+# 見出し
+
+Markdownの記法が使えます。
+
+```tsx
+// コードブロックも使用可能
+<Marquee>サンプル</Marquee>
+```
+````
+
+### CSSのカスタマイズ
+
+`src/Marquee/styles/`ディレクトリ内のCSSファイルを編集することで、アニメーションをカスタマイズできます。
