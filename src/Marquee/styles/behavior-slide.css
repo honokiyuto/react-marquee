@@ -1,67 +1,97 @@
 .marquee-slide-left {
+  white-space: nowrap;
+  display: grid;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-name: marquee-slide-left;
   animation-fill-mode: forwards;
+
+  &::before {
+    content: '';
+  }
 }
 
 .marquee-slide-right {
+  white-space: nowrap;
+  display: grid;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-name: marquee-slide-right;
   animation-fill-mode: forwards;
-}
 
-.marquee-slide-down {
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
-  animation-name: marquee-slide-down;
-  animation-fill-mode: forwards;
+  &::before {
+    content: '';
+  }
 }
 
 .marquee-slide-up {
+  white-space: nowrap;
+  display: grid;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-name: marquee-slide-up;
   animation-fill-mode: forwards;
+  height: 100%;
+
+  &::before {
+    content: '';
+  }
+}
+
+.marquee-slide-down {
+  white-space: nowrap;
+  display: grid;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: marquee-slide-down;
+  height: 100%;
+
+  &::before {
+    content: '';
+  }
 }
 
 @keyframes marquee-slide-left {
   0% {
-    transform: translateX(100%);
+    grid-template-columns: 1fr auto;
   }
+
   100% {
-    transform: translateX(0%);
+    grid-template-columns: 0fr auto;
   }
 }
 
 @keyframes marquee-slide-right {
   0% {
-    transform: translateX(-100%);
+    grid-template-columns: 0fr auto;
   }
+
   100% {
-    transform: translateX(0%);
+    grid-template-columns: 1fr auto;
   }
 }
 
 @keyframes marquee-slide-down {
   0% {
-    transform: translateY(-100%);
+    grid-template-rows: 0fr auto;
   }
+
   100% {
-    transform: translateY(0%);
+    grid-template-rows: 1fr auto;
   }
 }
 
 @keyframes marquee-slide-up {
   0% {
-    transform: translateY(100%);
+    grid-template-rows: 1fr auto;
   }
+
   100% {
-    transform: translateY(0%);
+    grid-template-rows: 0fr auto;
   }
 }
