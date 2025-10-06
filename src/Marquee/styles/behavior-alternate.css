@@ -1,56 +1,29 @@
-
-.marquee-alternate-left {
+.marquee-alternate {
   white-space: nowrap;
   display: grid;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 4s;
+
+  &::before {
+    content: '';
+  }
+}
+
+.alternate-left {
   animation-name: marquee-alternate-left;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-alternate-right {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 4s;
+.alternate-right {
   animation-name: marquee-alternate-right;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-alternate-up {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 4s;
+.alternate-up {
   animation-name: marquee-alternate-up;
-  height: 100%;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-alternate-down {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 4s;
+.alternate-down {
   animation-name: marquee-alternate-down;
-  height: 100%;
-
-  &::before {
-    content: '';
-  }
 }
 
 @keyframes marquee-alternate-left {

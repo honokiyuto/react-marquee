@@ -1,59 +1,30 @@
-.marquee-slide-left {
+.marquee-slide {
   white-space: nowrap;
   display: grid;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  &::before {
+    content: '';
+  }
+}
+
+.slide-left {
   animation-name: marquee-slide-left;
-  animation-fill-mode: forwards;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-slide-right {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
+.slide-right {
   animation-name: marquee-slide-right;
-  animation-fill-mode: forwards;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-slide-up {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
+.slide-up {
   animation-name: marquee-slide-up;
-  animation-fill-mode: forwards;
-  height: 100%;
-
-  &::before {
-    content: '';
-  }
 }
 
-.marquee-slide-down {
-  white-space: nowrap;
-  display: grid;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+.slide-down {
   animation-name: marquee-slide-down;
-  height: 100%;
-
-  &::before {
-    content: '';
-  }
 }
 
 @keyframes marquee-slide-left {

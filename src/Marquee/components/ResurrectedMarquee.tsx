@@ -21,7 +21,7 @@ export const ResurrectedMarquee = ({
   children,
 }: MarqueeProps) => {
   const containerClassName = `marquee-container ${className}`.trim();
-  const marqueeClassName = `marquee-content marquee-${behavior}-${direction}`;
+  const marqueeClassName = `marquee-content marquee-${behavior} ${behavior}-${direction}`;
   const marqueeStyle = getAnimations({
     scrollAmount,
     scrollDelay,

@@ -1,28 +1,22 @@
-.marquee-scroll-left {
+.marquee-scroll {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 1s;
+}
+
+.scroll-left {
   animation-name: marquee-scroll-left;
 }
 
-.marquee-scroll-right {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
+.scroll-right {
   animation-name: marquee-scroll-right;
 }
 
-.marquee-scroll-down {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
+.scroll-down {
   animation-name: marquee-scroll-down;
 }
 
-.marquee-scroll-up {
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
+.scroll-up {
   animation-name: marquee-scroll-up;
 }
 
