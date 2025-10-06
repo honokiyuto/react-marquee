@@ -1,7 +1,7 @@
 .marquee-scroll-left {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-duration: 10s;
+  animation-duration: 1s;
   animation-name: marquee-scroll-left;
 }
 
@@ -15,7 +15,7 @@
 .marquee-scroll-down {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-duration: 10s;
+  animation-duration: 1s;
   animation-name: marquee-scroll-down;
 }
 

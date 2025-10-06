@@ -1,8 +1,9 @@
 .marquee-slide-left {
   animation-timing-function: linear;
   animation-iteration-count: 1;
-  animation-duration: 10s;
+  animation-duration: 1s;
   animation-name: marquee-slide-left;
+  animation-fill-mode: forwards;
 }
 
 .marquee-slide-right {
@@ -10,13 +11,15 @@
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-name: marquee-slide-right;
+  animation-fill-mode: forwards;
 }
 
 .marquee-slide-down {
   animation-timing-function: linear;
   animation-iteration-count: 1;
-  animation-duration: 10s;
+  animation-duration: 1s;
   animation-name: marquee-slide-down;
+  animation-fill-mode: forwards;
 }
 
 .marquee-slide-up {
@@ -24,6 +27,7 @@
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-name: marquee-slide-up;
+  animation-fill-mode: forwards;
 }
 
 @keyframes marquee-slide-left {

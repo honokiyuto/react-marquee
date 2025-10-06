@@ -1,5 +1,11 @@
 export type MarqueeProps = {
   /**
+   * @description 本物のmarquee要素を使用します。
+   * @default false
+   * @deprecated
+   */
+  isNativeMarquee?: boolean;
+  /**
    * @description marquee 要素内でのテキストのスクロール方法を `scroll`、`slide`、`alternate` の内の何れかのキーワードで指定します。指定を省略した場合は、初期値の `scroll` が適用されます。
    */
   behavior?: 'scroll' | 'slide' | 'alternate';

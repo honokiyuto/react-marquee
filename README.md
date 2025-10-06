@@ -1,69 +1,115 @@
-# React + TypeScript + Vite
+# React Marquee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HTMLの`<marquee>`要素を模したモダンなReactコンポーネントです。テキストや要素を様々な方向にスクロール表示させることができます。
 
-Currently, two official plugins are available:
+## 特徴
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎯 TypeScriptで型安全に実装
+- 🎨 複数のbehaviorモード（scroll, slide, alternate）
+- 🧭 4方向のスクロール対応（left, right, up, down）
+- ⚡️ カスタマイズ可能なスピードとループ回数
+- 🎭 完全なStorybook対応
 
-## Expanding the ESLint configuration
+## インストール
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 開発サーバーの起動
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+pnpm dev
 ```
+
+## Storybookの起動
+
+コンポーネントのドキュメントと様々なバリエーションを確認できます：
+
+```bash
+pnpm storybook
+```
+
+Storybookは `http://localhost:6006` で起動します。
+
+## 使用方法
+
+```tsx
+import { Marquee } from './Marquee';
+
+function App() {
+  return (
+    <Marquee
+      behavior="scroll"
+      direction="left"
+      scrollAmount={6}
+      scrollDelay={85}
+      loop={-1}
+    >
+      スクロールするテキスト
+    </Marquee>
+  );
+}
+```
+
+## Props
+
+| Prop           | Type                                  | Default    | Description                                |
+| -------------- | ------------------------------------- | ---------- | ------------------------------------------ |
+| `behavior`     | `'scroll' \| 'slide' \| 'alternate'`  | `'scroll'` | スクロールの動作パターン                   |
+| `direction`    | `'left' \| 'right' \| 'up' \| 'down'` | `'left'`   | スクロールの方向                           |
+| `loop`         | `number`                              | `-1`       | スクロール回数（-1で無限ループ）           |
+| `scrollAmount` | `number`                              | `6`        | 1インターバルあたりの移動ピクセル数        |
+| `scrollDelay`  | `number`                              | `85`       | スクロールのインターバル（ミリ秒、最小60） |
+| `className`    | `string`                              | `''`       | カスタムCSSクラス名                        |
+| `style`        | `React.CSSProperties`                 | `{}`       | インラインスタイル                         |
+| `children`     | `React.ReactNode`                     | -          | 表示するコンテンツ                         |
+
+## Behaviorモード
+
+### Scroll
+
+テキストが連続してスクロールします。端に到達すると反対側から再度表示されます。
+
+### Slide
+
+テキストが完全に通過してから、再度反対側から表示されます。
+
+### Alternate
+
+テキストが端で反転し、往復運動します。
+
+## ビルド
+
+```bash
+pnpm build
+```
+
+## リント
+
+```bash
+pnpm lint
+```
+
+## フォーマット
+
+```bash
+pnpm format
+```
+
+## Storybookのビルド
+
+```bash
+pnpm build-storybook
+```
+
+---
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Storybook 9
+- ESLint
+- Prettier
