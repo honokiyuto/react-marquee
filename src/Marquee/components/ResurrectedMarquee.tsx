@@ -27,6 +27,7 @@ export const ResurrectedMarquee = ({
     scrollDelay,
     loop,
     isStopAnimation,
+    behavior,
   });
   return (
     <div className={containerClassName} style={style}>

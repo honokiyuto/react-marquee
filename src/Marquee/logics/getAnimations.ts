@@ -1,14 +1,19 @@
 import type { MarqueeProps } from '../types/MarqueeProps';
 
+type GetAnimationsProps = Required<
+  Pick<
+    MarqueeProps,
+    'scrollAmount' | 'scrollDelay' | 'loop' | 'isStopAnimation' | 'behavior'
+  >
+>;
+
 export const getAnimations = ({
   scrollAmount,
   scrollDelay,
   loop,
-  isStopAnimation = false,
-}: Pick<
-  MarqueeProps,
-  'scrollAmount' | 'scrollDelay' | 'loop' | 'isStopAnimation'
->): React.CSSProperties => {
+  isStopAnimation,
+  behavior,
+}: GetAnimationsProps): React.CSSProperties => {
   // scrolldelayの最小値は60ms
   const actualScrollDelay = Math.max(60, scrollDelay ?? 0);
 
@@ -20,7 +25,9 @@ export const getAnimations = ({
     (baseDuration * actualScrollDelay * 6) / (85 * (scrollAmount ?? 6));
 
   // animation-iteration-countを設定
-  const iterationCount = loop === -1 ? 'infinite' : loop;
+  // slideの場合はデフォルトで1回のみ
+  const iterationCount =
+    loop === -1 ? (behavior === 'slide' ? 1 : 'infinite') : loop;
 
   return {
     animationDuration: `${duration}ms`,
