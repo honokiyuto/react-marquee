@@ -1,0 +1,57 @@
+.marquee-scroll {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+.scroll-left {
+  animation-name: marquee-scroll-left;
+}
+
+.scroll-right {
+  animation-name: marquee-scroll-right;
+}
+
+.scroll-down {
+  animation-name: marquee-scroll-down;
+}
+
+.scroll-up {
+  animation-name: marquee-scroll-up;
+}
+
+@keyframes marquee-scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-scroll-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes marquee-scroll-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes marquee-scroll-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
