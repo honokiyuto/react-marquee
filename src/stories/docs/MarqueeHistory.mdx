@@ -7,7 +7,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ### **1\. `<marquee>`タグとは**
 
 `<marquee>`（マーキー）タグは、ウェブページ上でテキストや画像を電光掲示板のように自動でスクロールさせるためのHTML要素です。その動作は、さまざまな属性を指定することで細かく制御することが可能です。
-現在は、すべてのブラウザで非推奨とされています。なお、いつ消えてもおかしくないと言われ続けて、全ブラウザフルサポートのまま何年も経過しています。
+現在は、すべてのブラウザで非推奨とされています。なお、2025/10/07時点で、いつ消えてもおかしくないと言われ続けていますが、全ブラウザフルサポートのまま何年も経過しています。
 
 [marquee: マーキー要素 - HTML | MDN](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/marquee)
 
@@ -16,15 +16,48 @@ import { Meta } from '@storybook/addon-docs/blocks';
 </marquee>
 
 ```html
+<!-- marqueeは色やspaceも属性で指定できる -->
 <marquee bgcolor="#f0f0f0" vspace="20" hspace="20">
   ★☆★☆ようこそMarqueeの歴史へ：このページではmarqueeタグがどのように誕生し、どのように使われてきたかをご紹介しますよ★☆★☆
+</marquee>
+```
+
+<marquee
+  direction="down"
+  width="250"
+  height="200"
+  behavior="alternate"
+  style={{ border: 'solid' }}
+>
+  <marquee behavior="alternate">
+    <img
+      src="https://cdn.iconscout.com/icon/free/png-512/free-dvd-icon-svg-download-png-282446.png?f=webp&w=50"
+      alt="placeholder"
+    />
+  </marquee>
+</marquee>
+
+```html
+<!-- marqueeタグを二重にする -->
+<marquee
+  direction="down"
+  width="250"
+  height="200"
+  behavior="alternate"
+  style="border:solid"
+>
+  <marquee behavior="alternate">
+    <img
+      src="https://cdn.iconscout.com/icon/free/png-512/free-dvd-icon-svg-download-png-282446.png?f=webp&w=90"
+      alt="placeholder"
+    />
+  </marquee>
 </marquee>
 ```
 
 ---
 
 ### **2\. `<marquee>`タグの歴史と物語**
-
 
 #### **2.1. 誕生の背景：ブラウザ戦争の産物**
 
@@ -36,7 +69,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 例えば、IEでは`<marquee>`タグが、ネスケでは`<blink>`タグ（要素を点滅させるタグ[(引用)](https://www.tohoho-web.com/html/blink.htm)）がそれぞれ実装されていました。
 
-※流石に今では`<blink>`タグはどこでも機能していないようですが、Googleで「blink html」で検索すると、検索結果がチカチカして楽しいです。
+流石に今では`<blink>`タグはアクセシビリティ上の問題が大きすぎて全ブラウザで機能していないようですが、Googleで「blink html」で検索すると、検索結果がチカチカして楽しいです。
+
+その後、ネスケはIEとの市場シェア争いに負け、2008年にサービスを終了しました。
+
+確かにIEは勝ち残りましたが、ではなぜその中でも`<marquee>`タグは普及したのでしょうか？
 
 <div style={{ display: 'flex', gap: '20px' }}>
   <img
@@ -53,8 +90,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 </div>
 
 [(画像引用1)](https://ja.wikipedia.org/wiki/Internet_Explorer_2)
-[(画像引用2)](https://ja.wikipedia.org/wiki/Netscape_Navigator_(%E3%83%8D%E3%83%83%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%BA))
-
+[(画像引用2)](<https://ja.wikipedia.org/wiki/Netscape_Navigator_(%E3%83%8D%E3%83%83%E3%83%88%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%BA)>)
 
 #### **2.2. 日本における独自の普及と「ガラケー」文化**
 
@@ -64,20 +100,30 @@ import { Meta } from '@storybook/addon-docs/blocks';
 2. **スタイリングの制約**: CSSやJavaScriptのサポートが不十分またはキャリアごとに異なっていたガラケーにおいて、動きをつけられる数少ない貴重な手法でした。
 3. **「ホムペ」と「デコる」文化**: 中高生を中心に個人のホームページ（ホムペ）作成が流行し、サイトを目立たせるための「デコレーション」として`<marquee>`は最適でした。
 
-<img src="https://imgcp.aacdn.jp/img-a/800/auto/aa/gm/article/2/4/0/0/2/sharpjump.gif" alt="ガラケー文化" style={{ width: '500px' }} />
-[(画像引用)](https://allabout.co.jp/gm/gc/24002/)
+以下の「ガラケー」時代のYahoo! JAPANの画面です。
 
-#### **2.3. 非推奨への道：なぜ`<marquee>`は厭われたのか**
+狭い画面幅に収めるために「半角カナ」を利用しています。
 
-その手軽さから広く使われた一方で、`<marquee>`タグは多くの問題点を抱えており、以下の点から厳しい批判を受けました。
+また、縦スクロールもボタン連打で煩わしいので、できるだけ画面サイズ内で情報を収めようとしている印象があります。
 
-##### **技術的・標準化の問題**
+<img
+  src="https://image.itmedia.co.jp/promobile/articles/0911/09/l_os_teihen05.jpg"
+  alt="ガラケー文化"
+  style={{ width: '200px' }}
+/>
+[(画像引用)](https://www.itmedia.co.jp/promobile/articles/0911/09/news083.html)
+
+#### **2.3. 非推奨への道：なぜ`<marquee>`は疎まれたのか**
+
+手軽さから広く使われた一方で、`<marquee>`タグは多くの問題点を抱えており、以下の点から厳しい批判を受けました。
+
+##### **（１）技術的・標準化の問題**
 
 - **非標準**: 元はIEの独自機能でしたが、ウェブ技術の標準を定めるW3C（World Wide Web Consortium）の公式仕様に一度も採用されませんでした。
 - **関心の分離の原則への違反**: 見た目を制御する機能と、文書構造を定義すべきHTMLが混在しており、HTMLとCSSの役割を分離するという現代のウェブ開発の基本原則に反していました。
 - **HTML5での廃止**: これらの理由から、HTML5の仕様策定時に正式に「廃止された機能（obsolete）」と位置づけられ、使用しないことが強く推奨されるようになりました。
 
-##### **ユーザビリティとアクセシビリティの問題**
+##### **（２）ユーザビリティとアクセシビリティの問題**
 
 非推奨になるもっとも決定的な理由は、ユーザビリティとアクセシビリティの問題でした。
 
@@ -88,16 +134,16 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ---
 
-### **3\. `<marquee>`タグのその後と現代**
+### **3\. `<marquee>`タグのその後と現在**
 
 #### **3.1. CSSによる代替案の模索と挫折**
 
-`<marquee>`の機能をCSSで代替しようという動きもかつて存在しました。「CSS Marquee Module Level 3」として、`marquee-style`や`marquee-direction`といったプロパティが提案され、一時はW3Cの草案（Working Draft）にもなりました。
+`<marquee>`の機能をCSSで代替しようという動きもかつて存在しました。「CSS Marquee Module Level 3」として、`marquee-style`や`marquee-direction`といったプロパティが提案され、一時はW3Cの草案（Working Draft）にもなりました[(引用)](https://www.w3.org/TR/2008/CR-css3-marquee-20081205/)。
 
 しかし、この提案は最終的に規格化されませんでした。その理由は以下の通りです。
 
-1. **ブラウザの実装が進まなかった**: 主要なブラウザベンダーによる十分な実装（採用）がありませんでした。
-2. **代替技術の存在**: より汎用的で強力な**CSS Animations**で同様の効果が実現可能であり、専用のプロパティは不要と判断されました。
+1. **ブラウザの実装が進まなかった**: 主要なブラウザたちが実装をあまり積極的に行いませんでした。
+2. **CSSでできる**: 正直この時期だとJavaScriptやCSSのanimationで実現可能であり、専用のプロパティは不要と判断されました。
 3. **アクセシビリティへの懸念**: 動きのあるコンテンツがもたらす可読性や制御不能といった問題が、新しい標準として採用する上での障壁となりました。
 
 #### **3.2. 将来のサポート状況**
