@@ -1,0 +1,133 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="はじめに/<marquee>をreactで再現" />
+
+## `<marquee>`をreactで再現
+
+### **1\. `<marquee>`をreactで復活させてみる**
+
+#### "scroll" behaviorの場合
+
+scrollはデフォルトのbehaviorです。
+
+`<marquee>`と言えばこのbehaviorを想像する人が多いと思います。
+
+CSSの実装方法はさまざまですが、丁寧にやる場合は以下の方法があります。
+
+transformを使用して、親要素の±100%分だけ線形に移動させるというものです。
+
+<img
+  src="/img/scroll-figure.png"
+  alt="marquee-scroll-rightの図解"
+  width="500"
+/>
+
+```html
+<div class="marquee-container">
+  <div class="marquee-scroll-left">Hello</div>
+</div>
+```
+
+```css
+.marquee-container {
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+}
+
+.marquee-scroll-right {
+  width: 100%;
+  height: 100%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-name: marquee-scroll-right;
+}
+
+@keyframes marquee-scroll-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+```
+
+なお、`scroll-left`の場合は`transform: translateX(100%)`の正負を反転させるだけです。
+また、`scroll-down`や`scroll-up`の場合は`transform: translateY(-100%)`のように`Y`軸に変更するだけです。
+
+#### "alternate","slide" behaviorの場合
+
+意外と難しいのが`alternate`と`slide`の場合です。
+
+この二つは、子要素の端が、親要素の内側の辺に衝突して跳ね返る、または停止するという動きをします。
+
+`transform: translateX(100%)`を使用すると、内辺に衝突して跳ね返るという動きが表現しづらいです。
+
+指定している比率が、親要素に対して`100%`なので、自分の要素の数値分だけ足し引きするには、JavaScriptで計算する必要があります。
+
+<img
+  src="/img/alternate-motion.png"
+  alt="marquee-alternateの動きの図解"
+  width="500"
+/>
+
+全く異なるアプローチで再現したものが以下のgridを使ったものです[(参考にした実装)](https://blog-mi.com/marquee-css/)。
+
+before要素のgridと、子要素のgridを使っています。
+
+before要素側のgridの幅を`0fr`から`1fr`、`1fr`から`0fr`に動かすことで、子要素が親要素の内側の辺に衝突して跳ね返るという動きを表現しています。
+
+<img
+  src="/img/alternate-figure.png"
+  alt="marquee-alternateの動きの図解"
+  width="500"
+/>
+
+これを実装すると以下のようになります。
+
+```html
+<div class="marquee-container">
+  <div class="marquee-alternate-right">Hello</div>
+</div>
+```
+
+```css
+.marquee-container {
+  width: 100%;
+  height: 100%;
+}
+
+.marquee-alternate {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  display: grid;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-name: marquee-slide-right;
+
+  &::before {
+    content: '';
+  }
+}
+
+@keyframes marquee-alternate-right {
+  0% {
+    grid-template-columns: 0fr auto;
+  }
+
+  50% {
+    grid-template-columns: 1fr auto;
+  }
+
+  100% {
+    grid-template-columns: 0fr auto;
+  }
+}
+```
+
+なお、`alternate-up`や`alternate-down`の場合は`grid-template-columns`を`grid-template-rows`に変更するだけです。
+また、 slideの場合は、`50%`のところを削除し、`100%`のところに適用します。
