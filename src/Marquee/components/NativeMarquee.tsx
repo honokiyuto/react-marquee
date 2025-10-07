@@ -22,10 +22,10 @@ export const NativeMarquee = ({
     scrolldelay: scrollDelay,
   };
   return (
-    // @ts-ignore
+    // @ts-expect-error 今marquee要素の型が存在しないことは自明なので無視します。
     <marquee className={className} style={style} {...props}>
       {children}
-      {/* @ts-ignore */}
+      {/* @ts-expect-error 今marquee要素の型が存在しないことは自明なので無視します。 */}
     </marquee>
   );
 };
