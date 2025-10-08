@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { RerenderChildren } from './RerenderChildren';
 
 <Meta title="はじめに/<marquee>の興亡史" />
 
@@ -35,9 +36,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ##### （２）"slide" behaviorの場合
 
+<RerenderChildren>
 <marquee behavior="slide" bgcolor="#f0f0f0" vspace="20" hspace="20">
   ★☆★☆ようこそMarqueeのslideへ★☆★☆
 </marquee>
+</RerenderChildren>
 
 ```html
 <!-- slideは登場して端っこで止まると -->
@@ -209,8 +212,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ---
 
-> *歴史は常にくり返すけど 人は過去には戻れない...*
+> _歴史は常にくり返すけど 人は過去には戻れない..._
 
-*by ニコ・ロビン（麦わら海賊団 考古学者）*
+_by ニコ・ロビン（麦わら海賊団 考古学者）_
 
 ---
