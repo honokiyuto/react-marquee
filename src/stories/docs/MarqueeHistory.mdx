@@ -6,27 +6,70 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ### **1\. `<marquee>`タグとは**
 
-`<marquee>`（マーキー）タグは、ウェブページ上でテキストや画像を電光掲示板のように自動でスクロールさせるためのHTML要素です。その動作は、さまざまな属性を指定することで細かく制御することが可能です。
-現在は、すべてのブラウザで非推奨とされています。なお、2025/10/07時点で、いつ消えてもおかしくないと言われ続けていますが、全ブラウザフルサポートのまま何年も経過しています。
+`<marquee>`（マーキー）タグは、Webページ上でテキストや画像を電光掲示板のように自動でスクロールさせるためのHTML要素です。
+
+その動作は、さまざまな属性を指定することで細かく制御することが可能です。
+
+現在は、すべてのブラウザで非推奨とされています。
+
+なお、2025年現在でいつ消えてもおかしくないと言われ続けていますが、全ブラウザフルサポートのまま何年も経過しています。
 
 [marquee: マーキー要素 - HTML | MDN](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/marquee)
 
-<marquee bgcolor="#f0f0f0" vspace="20" hspace="20">
-  ★☆★☆ようこそMarqueeの歴史へ：このページではmarqueeタグがどのように誕生し、どのように使われてきたかをご紹介しますよ★☆★☆
+#### **1.1. `<marquee>`タグの使い方の例**
+
+以下の3つのbehaviorがあります。
+
+##### （１）"scroll" behaviorの場合（default）
+
+<marquee behavior="scroll" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのscrollへ★☆★☆
 </marquee>
 
 ```html
-<!-- marqueeは色やspaceも属性で指定できる -->
-<marquee bgcolor="#f0f0f0" vspace="20" hspace="20">
-  ★☆★☆ようこそMarqueeの歴史へ：このページではmarqueeタグがどのように誕生し、どのように使われてきたかをご紹介しますよ★☆★☆
+<!-- scrollはデフォルトのbehaviorです -->
+<marquee behavior="scroll" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのscrollへ★☆★☆
 </marquee>
 ```
 
+##### （２）"slide" behaviorの場合
+
+<marquee behavior="slide" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのslideへ★☆★☆
+</marquee>
+
+```html
+<!-- slideは登場して端っこで止まると -->
+<marquee behavior="slide" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのslideへ★☆★☆
+</marquee>
+```
+
+##### （３）"alternate" behaviorの場合
+
+<marquee behavior="alternate" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのalternateへ★☆★☆
+</marquee>
+
+```html
+<!-- alternateは登場して端っこで衝突し、跳ね返って往復します -->
+<marquee behavior="alternate" bgcolor="#f0f0f0" vspace="20" hspace="20">
+  ★☆★☆ようこそMarqueeのalternateへ★☆★☆
+</marquee>
+```
+
+###### "alternate" behaviorの応用
+
+懐かしのDVDのスクリーンセーバーのような動きも作れます。
+
+※先ほどやるとiOS Safariではうまく動作しないっぽいです。
+
 <marquee
+  behavior="alternate"
   direction="down"
   width="250"
   height="200"
-  behavior="alternate"
   style={{ border: 'solid' }}
 >
   <marquee behavior="alternate">
@@ -38,17 +81,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 </marquee>
 
 ```html
-<!-- marqueeタグを二重にする -->
+<!-- marqueeタグのalternateを二重にする -->
 <marquee
+  behavior="alternate"
   direction="down"
   width="250"
   height="200"
-  behavior="alternate"
   style="border:solid"
 >
   <marquee behavior="alternate">
     <img
-      src="https://cdn.iconscout.com/icon/free/png-512/free-dvd-icon-svg-download-png-282446.png?f=webp&w=90"
+      src="https://cdn.iconscout.com/icon/free/png-512/free-dvd-icon-svg-download-png-282446.png?f=webp&w=50"
       alt="placeholder"
     />
   </marquee>
@@ -65,7 +108,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 1990年代、ブラウザは**Internet Explorer(IE)** と **Netscape Navigator(ネスケ)** の2者が競い合っていました。
 
-両者はウェブ標準の策定を待たずに独自のHTMLタグ（独自拡張機能）を次々と実装し、自社ブラウザの優位性を示そうと競い合っていました。
+両者はWeb標準の策定を待たずに独自のHTMLタグ（独自拡張機能）を次々と実装し、自社ブラウザの優位性を示そうと競い合っていました。
 
 例えば、IEでは`<marquee>`タグが、ネスケでは`<blink>`タグ（要素を点滅させるタグ[(引用)](https://www.tohoho-web.com/html/blink.htm)）がそれぞれ実装されていました。
 
@@ -115,20 +158,16 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 #### **2.3. 非推奨への道：なぜ`<marquee>`は疎まれたのか**
 
-手軽さから広く使われた一方で、`<marquee>`タグは多くの問題点を抱えており、以下の点から厳しい批判を受けました。
+手軽さから広く使われた一方で、`<marquee>`タグは多くの問題点を抱えており、結局W3Cにも採用されず、HTML5で正式に廃止される運命を辿りました。
 
-##### **（１）技術的・標準化の問題**
+##### **（１）技術的な問題**
 
-- **非標準**: 元はIEの独自機能でしたが、ウェブ技術の標準を定めるW3C（World Wide Web Consortium）の公式仕様に一度も採用されませんでした。
-- **関心の分離の原則への違反**: 見た目を制御する機能と、文書構造を定義すべきHTMLが混在しており、HTMLとCSSの役割を分離するという現代のウェブ開発の基本原則に反していました。
-- **HTML5での廃止**: これらの理由から、HTML5の仕様策定時に正式に「廃止された機能（obsolete）」と位置づけられ、使用しないことが強く推奨されるようになりました。
+- **関心の分離の原則への違反**: 見た目を制御する機能と、文書構造を定義すべきHTMLが混在しており、HTMLとCSSの役割を分離するというWeb開発の基本原則に反していました。
 
-##### **（２）ユーザビリティとアクセシビリティの問題**
-
-非推奨になるもっとも決定的な理由は、ユーザビリティとアクセシビリティの問題でした。
+##### **（２）アクセシビリティの問題**
 
 - **可読性の低下**: 動いているテキストは静止しているテキストより読みづらく、ユーザーに認知的負荷をかけます。
-- **コントロール不能性**: ユーザーが動きを止めたり、速度を調整したりできず、ウェブサイトの閲覧における主導権を奪います。
+- **コントロール不能性**: ユーザーが動きを止めたり、速度を調整したりできず、Webサイトの閲覧における主導権を奪います。
 - **注意散漫の原因**: 本来集中すべき主要なコンテンツからユーザーの注意を逸らします。
 - **アクセシビリティ障壁**: スクリーンリーダーなどの支援技術が内容を正しく読み上げられない可能性があり、特定のユーザーを情報から排除する結果につながりました。
 
@@ -138,13 +177,15 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 #### **3.1. CSSによる代替案の模索と挫折**
 
-`<marquee>`の機能をCSSで代替しようという動きもかつて存在しました。「CSS Marquee Module Level 3」として、`marquee-style`や`marquee-direction`といったプロパティが提案され、一時はW3Cの草案（Working Draft）にもなりました[(引用)](https://www.w3.org/TR/2008/CR-css3-marquee-20081205/)。
+実は`<marquee>`の機能をCSSで代替しようという動きもかつて存在しました。
+
+「CSS Marquee Module Level 3」として、`marquee-style`や`marquee-direction`といったプロパティが提案され、一時はW3Cの草案（Working Draft）にもなりました[(引用)](https://www.w3.org/TR/2008/CR-css3-marquee-20081205/)。
 
 しかし、この提案は最終的に規格化されませんでした。その理由は以下の通りです。
 
-1. **ブラウザの実装が進まなかった**: 主要なブラウザたちが実装をあまり積極的に行いませんでした。
-2. **CSSでできる**: 正直この時期だとJavaScriptやCSSのanimationで実現可能であり、専用のプロパティは不要と判断されました。
-3. **アクセシビリティへの懸念**: 動きのあるコンテンツがもたらす可読性や制御不能といった問題が、新しい標準として採用する上での障壁となりました。
+- **ブラウザの実装が進まなかった**: 主要なブラウザたちが実装をあまり積極的に行いませんでした。
+- **CSSで可能だった**: 正直この時期だとJavaScriptやCSSのanimationで実現可能であり、専用のプロパティは不要と判断されました。
+- **アクセシビリティへの懸念**: 動きのあるコンテンツがもたらす可読性や制御不能といった問題が、新しい標準として採用する上での障壁となりました。
 
 #### **3.2. 将来のサポート状況**
 
@@ -156,14 +197,20 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ---
 
-### **まとめ**
+### **4\. まとめと教訓**
 
-`<marquee>`タグは、1990年代のブラウザ戦争の最中にIEの独自機能として生まれ、その手軽さから、特に技術的制約の多かった日本のガラケーサイトや個人のホームページで爆発的に普及しました。
+`<marquee>`タグの栄光と衰退から以下の教訓が得られます。
 
-しかし、ウェブ標準からの逸脱や、ユーザビリティ・アクセシビリティ上の多くの問題点から専門家たちに厳しく批判され、HTML5で正式に廃止されるという運命を辿りました。
+- **短期的な便利さ vs 長期的な持続可能性**: 手軽さや目新しさだけで技術を選ぶと、将来的に大きな代償を払うことになります。Web標準に準拠、関心の分離、など始めからしっかりとルールを守り、設計して丁寧に作ることが長く生きることにつながります。
 
-その物語はそこで終わらず、CSS3での標準化が一度は検討されたものの、より汎用的なCSSアニメーションにその座を譲りました。
+- **すべてのユーザーへの配慮**: 動きのある要素が一部のユーザーに楽しさを提供する一方で、別のユーザーには大きな障壁となる可能性があることを忘れてはいけません。アクセシビリティは、後付けではなく最初から設計の中心に据えるべきです。
 
-そして、今でも`<marquee>`を忘れられない人たちが、復活を願って再現しようと試みています。
+- **独自機能のリスク考慮**: ブラウザ戦争で生まれた独自機能は、一時的に競争優位性をもたらしても、エコシステム全体として良い結果にはなりませんでした。標準化された技術をまずは第1選択肢にし、独自機能はきちんとした理由を持って使用するべきです。
 
-[GitHubでmarqueeと検索](https://github.com/search?q=marquee&type=repositories)
+---
+
+> *歴史は常にくり返すけど 人は過去には戻れない...*
+
+*by ニコ・ロビン（麦わら海賊団 考古学者）*
+
+---

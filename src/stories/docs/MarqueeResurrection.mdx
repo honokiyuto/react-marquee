@@ -1,12 +1,19 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Marquee } from '../../Marquee';
 
 <Meta title="はじめに/<marquee>をreactで再現" />
 
-## `<marquee>`をreactで再現
+## `<marquee>`をreactで再現する
 
-### **1\. `<marquee>`をreactで復活させてみる**
+### 1\. `scroll` behaviorの場合
 
-#### "scroll" behaviorの場合
+<Marquee
+  behavior="scroll"
+  direction="right"
+  style={{ width: '100%', height: 'fit-content', backgroundColor: '#f0f0f0' }}
+>
+  ★☆★☆ようこそReactMarqueeのscrollへ★☆★☆
+</Marquee>
 
 scrollはデフォルトのbehaviorです。
 
@@ -16,11 +23,7 @@ CSSの実装方法はさまざまですが、丁寧にやる場合は以下の�
 
 transformを使用して、親要素の±100%分だけ線形に移動させるというものです。
 
-<img
-  src="img/scroll-figure.png"
-  alt="marquee-scroll-rightの図解"
-  width="500"
-/>
+<img src="img/scroll-figure.png" alt="marquee-scroll-rightの図解" width="500" />
 
 ```html
 <div class="marquee-container">
@@ -57,7 +60,28 @@ transformを使用して、親要素の±100%分だけ線形に移動させる�
 なお、`scroll-left`の場合は`transform: translateX(100%)`の正負を反転させるだけです。
 また、`scroll-down`や`scroll-up`の場合は`transform: translateY(-100%)`のように`Y`軸に変更するだけです。
 
-#### "alternate","slide" behaviorの場合
+### 2\. `alternate`,`slide` behaviorの場合
+
+<Marquee
+  behavior="slide"
+  direction="right"
+  style={{
+    width: '100%',
+    height: 'fit-content',
+    backgroundColor: '#f0f0f0',
+    marginBottom: '20px',
+  }}
+>
+  ★☆★☆ようこそReact Marqueeのslideへ★☆★☆
+</Marquee>
+
+<Marquee
+  behavior="alternate"
+  direction="right"
+  style={{ width: '100%', height: 'fit-content', backgroundColor: '#f0f0f0' }}
+>
+  ★☆★☆ようこそReact Marqueeのalternateへ★☆★☆
+</Marquee>
 
 意外と難しいのが`alternate`と`slide`の場合です。
 
@@ -131,3 +155,5 @@ before要素側のgridの幅を`0fr`から`1fr`、`1fr`から`0fr`に動かす�
 
 なお、`alternate-up`や`alternate-down`の場合は`grid-template-columns`を`grid-template-rows`に変更するだけです。
 また、 slideの場合は、`50%`のところを削除し、`100%`のところに適用します。
+
+※[GitHub - honokiyuto/react-marquee](https://github.com/honokiyuto/react-marquee)
